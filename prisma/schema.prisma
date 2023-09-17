@@ -1,0 +1,96 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// datasource db {
+//   provider = "sqlite"
+//   url      = "file:./dev.sqlite"
+// }
+
+// Papel de usuários
+model Role {
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  status    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  users     User[]
+}
+
+// Usuários
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  name      String?
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  status    Boolean  @default(false)
+  roleId    Int
+  role      Role     @relation(fields: [roleId], references: [id])
+}
+
+// Instrumentos
+model Instrument {
+  id          Int         @id @default(autoincrement())
+  name        String
+  description String?
+  image       String?
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  active      Boolean     @default(false)
+  classrooms  Classroom[]
+}
+
+// Turnos da Aula
+model Shift {
+  id         Int         @id @default(autoincrement())
+  name       String
+  initial    Float
+  final      Float
+  classrooms Classroom[]
+}
+
+// Salas de Aulas
+model Classroom {
+  id           Int        @id @default(autoincrement())
+  instrumentId Int
+  intrument    Instrument @relation(fields: [instrumentId], references: [id])
+  turnoId      Int
+  turno        Shift      @relation(fields: [turnoId], references: [id])
+  status       Boolean    @default(false)
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+}
+
+// Eventos do projeto
+model Events {
+  id          Int      @id @default(autoincrement())
+  dataEvent   DateTime @default(now())
+  name        String
+  description String
+  images      Images[]
+  status      Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// Imagens dos Eventos
+model Images {
+  id           Int      @id @default(autoincrement())
+  src          String
+  dateCriation DateTime
+  eventId      Int
+  event        Events   @relation(fields: [eventId], references: [id])
+  status       Boolean  @default(false)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
