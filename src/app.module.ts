@@ -11,7 +11,16 @@ import { ImagesModule } from './images/images.module';
 import { EventsModule } from './events/events.module';
 
 @Module({
-  imports: [InstrumentsModule, CommonModule, RoleModule, UserModule, ShiftModule, ClassroomModule, ImagesModule, EventsModule],
+  imports: [
+    InstrumentsModule,
+    CommonModule,
+    RoleModule,
+    UserModule,
+    ShiftModule,
+    ClassroomModule,
+    ImagesModule,
+    EventsModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

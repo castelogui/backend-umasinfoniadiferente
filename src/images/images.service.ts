@@ -4,11 +4,11 @@ import { PrismaService } from 'src/common/prisma/prisma.service';
 
 @Injectable()
 export class ImagesService {
-  constructor(private readonly prisma: PrismaService) { }
+  constructor(private readonly prisma: PrismaService) {}
 
   create(createImageDto: Prisma.ImagesCreateInput) {
     return this.prisma.images.create({
-      data: createImageDto
+      data: createImageDto,
     });
   }
 
@@ -23,7 +23,7 @@ export class ImagesService {
   update(id: number, updateImageDto: Prisma.ImagesUpdateInput) {
     return this.prisma.images.update({
       where: { id },
-      data: updateImageDto
+      data: updateImageDto,
     });
   }
 

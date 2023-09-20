@@ -1,7 +1,14 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { RoleService } from './role.service';
 import { Prisma } from '@prisma/client';
-
 
 @Controller('role')
 export class RoleController {
@@ -23,7 +30,10 @@ export class RoleController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateRoleDto: Prisma.RoleUpdateInput) {
+  update(
+    @Param('id') id: string,
+    @Body() updateRoleDto: Prisma.RoleUpdateInput,
+  ) {
     return this.roleService.update(+id, updateRoleDto);
   }
 

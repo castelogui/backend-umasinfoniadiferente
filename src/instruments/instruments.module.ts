@@ -6,6 +6,6 @@ import { CommonModule } from 'src/common/common.module';
 @Module({
   imports: [CommonModule],
   controllers: [InstrumentsController],
-  providers: [InstrumentsService]
+  providers: [InstrumentsService],
 })
 export class InstrumentsModule {}

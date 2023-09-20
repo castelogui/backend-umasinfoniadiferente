@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { ImagesService } from './images.service';
 import { Prisma } from '@prisma/client';
 
@@ -22,7 +30,10 @@ export class ImagesController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateImageDto: Prisma.ImagesUpdateInput) {
+  update(
+    @Param('id') id: string,
+    @Body() updateImageDto: Prisma.ImagesUpdateInput,
+  ) {
     return this.imagesService.update(+id, updateImageDto);
   }
 

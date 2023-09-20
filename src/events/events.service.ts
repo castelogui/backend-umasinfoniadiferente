@@ -4,11 +4,11 @@ import { PrismaService } from 'src/common/prisma/prisma.service';
 
 @Injectable()
 export class EventsService {
-  constructor(private readonly prisma: PrismaService) { }
+  constructor(private readonly prisma: PrismaService) {}
 
   create(createEventDto: Prisma.EventsCreateInput) {
     return this.prisma.events.create({
-      data: createEventDto
+      data: createEventDto,
     });
   }
 
@@ -23,7 +23,7 @@ export class EventsService {
   update(id: number, updateEventDto: Prisma.EventsUpdateInput) {
     return this.prisma.events.update({
       where: { id },
-      data: updateEventDto
+      data: updateEventDto,
     });
   }
 

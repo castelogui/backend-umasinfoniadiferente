@@ -6,6 +6,6 @@ import { CommonModule } from 'src/common/common.module';
 @Module({
   imports: [CommonModule],
   controllers: [ShiftController],
-  providers: [ShiftService]
+  providers: [ShiftService],
 })
 export class ShiftModule {}

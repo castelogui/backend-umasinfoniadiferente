@@ -4,7 +4,7 @@ import { PrismaService } from 'src/common/prisma/prisma.service';
 
 @Injectable()
 export class ShiftService {
-  constructor(private readonly prisma: PrismaService) { }
+  constructor(private readonly prisma: PrismaService) {}
 
   create(createShiftDto: Prisma.ShiftCreateInput) {
     return this.prisma.shift.create({
@@ -27,17 +27,17 @@ export class ShiftService {
   update(id: number, updateShiftDto: Prisma.ShiftUpdateInput) {
     return this.prisma.shift.update({
       where: {
-        id: id
+        id: id,
       },
-      data: updateShiftDto
-    })
+      data: updateShiftDto,
+    });
   }
 
   remove(id: number) {
     return this.prisma.shift.delete({
       where: {
-        id: id
-      }
+        id: id,
+      },
     });
   }
 }

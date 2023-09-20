@@ -6,6 +6,6 @@ import { CommonModule } from 'src/common/common.module';
 @Module({
   imports: [CommonModule],
   controllers: [UserController],
-  providers: [UserService]
+  providers: [UserService],
 })
 export class UserModule {}

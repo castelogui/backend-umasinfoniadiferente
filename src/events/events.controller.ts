@@ -1,10 +1,18 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { EventsService } from './events.service';
 import { Prisma } from '@prisma/client';
 
 @Controller('events')
 export class EventsController {
-  constructor(private readonly eventsService: EventsService) { }
+  constructor(private readonly eventsService: EventsService) {}
 
   @Post()
   create(@Body() createEventDto: Prisma.EventsCreateInput) {
@@ -22,7 +30,10 @@ export class EventsController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateEventDto: Prisma.EventsUpdateInput) {
+  update(
+    @Param('id') id: string,
+    @Body() updateEventDto: Prisma.EventsUpdateInput,
+  ) {
     return this.eventsService.update(+id, updateEventDto);
   }
 
