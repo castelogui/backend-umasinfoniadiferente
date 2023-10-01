@@ -9,6 +9,7 @@ import { ShiftModule } from './shift/shift.module';
 import { ClassroomModule } from './classroom/classroom.module';
 import { ImagesModule } from './images/images.module';
 import { EventsModule } from './events/events.module';
+import { PrismaService } from './common/prisma/prisma.service';
 
 @Module({
   imports: [
@@ -22,6 +23,6 @@ import { EventsModule } from './events/events.module';
     EventsModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, PrismaService],
 })
 export class AppModule {}
