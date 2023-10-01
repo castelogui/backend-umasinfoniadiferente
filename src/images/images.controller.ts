@@ -9,7 +9,9 @@ import {
 } from '@nestjs/common';
 import { ImagesService } from './images.service';
 import { Prisma } from '@prisma/client';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('images')
 @Controller('images')
 export class ImagesController {
   constructor(private readonly imagesService: ImagesService) {}
@@ -25,20 +27,20 @@ export class ImagesController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  findOne(@Param('id') id: number) {
     return this.imagesService.findOne(+id);
   }
 
   @Patch(':id')
   update(
-    @Param('id') id: string,
+    @Param('id') id: number,
     @Body() updateImageDto: Prisma.ImagesUpdateInput,
   ) {
     return this.imagesService.update(+id, updateImageDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  remove(@Param('id') id: number) {
     return this.imagesService.remove(+id);
   }
 }

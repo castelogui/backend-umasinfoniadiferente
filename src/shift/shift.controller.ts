@@ -9,7 +9,9 @@ import {
 } from '@nestjs/common';
 import { ShiftService } from './shift.service';
 import { Prisma } from '@prisma/client';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('shift')
 @Controller('shift')
 export class ShiftController {
   constructor(private readonly shiftService: ShiftService) {}
@@ -25,20 +27,20 @@ export class ShiftController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  findOne(@Param('id') id: number) {
     return this.shiftService.findOne(+id);
   }
 
   @Patch(':id')
   update(
-    @Param('id') id: string,
+    @Param('id') id: number,
     @Body() updateShiftDto: Prisma.ShiftUpdateInput,
   ) {
     return this.shiftService.update(+id, updateShiftDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  remove(@Param('id') id: number) {
     return this.shiftService.remove(+id);
   }
 }
